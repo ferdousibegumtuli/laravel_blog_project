@@ -72,19 +72,19 @@
           <form action="{{ route('users.store') }}" method="POST" id="userForm">
             @csrf
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Name</label>
+              <label for="name" class="col-sm-2 col-form-label">Name</label>
               <div class="col-sm-10">
                 <input type="text" name="name" class="form-control form-control-normal" placeholder="Enter user name">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Email</label>
+              <label for="email" class="col-sm-2 col-form-label">Email</label>
               <div class="col-sm-10">
                 <input type="email" name="email" class="form-control form-control-bold" placeholder="Enter your Email Id">
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Password</label>
+              <label for="password" class="col-sm-2 col-form-label">Password</label>
               <div class="col-sm-10">
                 <input type="password" name="password" class="form-control form-control-capitalize" placeholder="Enter Password">
               </div>

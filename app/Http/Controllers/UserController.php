@@ -54,9 +54,9 @@ class UserController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        $updateData = $request->all();
+        $updateData = $request->all(); 
         if (isset($updateData['password']) && !empty($updateData['password'])) {
 
             $password = $updateData['password'];
@@ -65,6 +65,7 @@ class UserController extends Controller
         } else {
 
             unset($updateData['password']);
+            unset($updateData['confirm_password']);
         }
         $this->userRepository->update($updateData, $id);
         return redirect('users')->with('success', 'User updated successfully!');

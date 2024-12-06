@@ -38,35 +38,15 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        dd($request);
-        // $imagePath = null;
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $imagePath = $image->store('articles_images', 'public');
-        // }
-    
-        // $article = new Article();
-        // $article->title = $request->input('title');
-        // $article->category_id = $request->input('categori');
-        // $article->tag_id = $request->input('tag');
-        // $article->description = $request->input('description');
-        // $article->status = $request->input('status');
-        // $article->image = $imagePath;
-        // $article = $article->save();
+        
+        $articleIsSave = $this->articleRepository->insert($request);
+
+        if($articleIsSave){
+            return redirect('articles')->with('success', 'Article added successfully!');
+        }
+
     
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public function show(Article $article)

@@ -3,21 +3,32 @@
 <div class="card" style="margin-top: 20;margin-left: 20;margin-right:400px">
     <div class="card-block">
         <h4 class="sub-title">Create Article</h4>
-
+        `
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
         <form action="{{route('articles.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
+
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="title" placeholder="Type your title in Placeholder">
                 </div>
             </div>
+            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
-                    <select name="categori" class="form-control">
-                        <option value="opt1">---Select Category---</option>
+                    <select name="category_id" class="form-control">
+                        <option value="">---Select Category---</option>
                         @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->category}}</option>
                         @endforeach
@@ -27,7 +38,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Tag</label>
                 <div class="col-sm-10">
-                    <select name="tag" class="form-control">
+                    <select name="tag_id" class="form-control">
                         <option value="">---Select Tag---</option>
                         @foreach($tags as $tag)
                         <option value="{{$tag->id}}">{{$tag->tag}}</option>
@@ -71,3 +82,10 @@
 </div>
 
 @endsection
+
+
+
+
+
+
+

@@ -10,7 +10,6 @@
                         <a href="articles/create " type="button" style="background: darkgreen; " class="btn btn-mat btn-info">Add</a>
                     </div>
                 </div>
-
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -21,21 +20,24 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                </thead>
 
                 <tbody>
                     @foreach($articles as $key => $article)
                     <tr>
                         <td>{{$key+1}}</td>
                         <td>{{$article->title}}</td>
-                        <td>{{$article->user_id}}</td>
-                        <td>categories/{{$article->category_id}}</td>
-                        <td>{{$article->tag_id}}</td>
-                        <td>{{$article->status}}</td>
+                        <td>{{$article->user->name}}</td>
+                        <td>{{$article->category->category}}</td>
+                        <td>{{$article->tag->tag}}</td>
+                        @if($article->status == 1){
+                        <td> Published</td>
+                        }@else{
+                        <td> Draft</td>
+                        }
+                        @endif
                         <td>
-                            <!-- <button id="{{$article->id}}" type="button" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;"
-                                class="btn btn-primary btn-square editButton"
-                                data-toggle="modal" data-target="#editModal">
+                            <button id="{{$article->id}}" type="button" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;"
+                                class="btn btn-primary btn-square editButton">
                                 <i class="icon-edit"></i>
                             </button>
                             <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline-block;">
@@ -44,12 +46,11 @@
                                 <button type="submit" class="btn btn-danger" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;">
                                     <i class="icon-trash"></i>
                                 </button>
-                            </form> -->
+                            </form>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
     </div>
@@ -74,13 +75,15 @@ $(document).ready(function() {
     $('.editButton').click(function() {
         var id = this.id;
         
+        console.log(this);
         $.ajax({
             type: "GET",
-            url: "/tags/" + id + "/edit",
+            url: "/articles/" + id + "/edit",
             success: function(response) {
                 console.log(response);
-                $('#tag').val(response.tag);
-                $('#tagEditForm').attr('action', '/tags/' + id);
+                
+                // $('#tag').val(response.tag);
+                $('#tagEditForm').attr('action', '/articles/' + id);
             }
         });
     });

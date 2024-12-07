@@ -23,7 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes(['register = false']);
+Auth::routes(['register'=>false]);
 Route::get('/deshboard', [HomeController::class, 'index'])->name('deshboard');
 Route::resource('/users', UserController::class);
 Route::resource('/categories', CategoryController::class);

@@ -10,7 +10,10 @@ class ArticleRepository
 
     public function index(): object
     {
-        return Article::get();
+
+        return Article::with('category', 'tag', 'user')->get();
+       
+
     }
 
     public function insert(ArticleRequest $request): bool
@@ -22,5 +25,22 @@ class ArticleRepository
             return Article::insert($articleInfo);
         }
         
+    }
+
+    public function edit(int $id): object
+    {
+        return Article::where('id', $id)->first();
+    }
+
+    // public function update(array $updateData, int $id): bool
+    // {
+    //     unset($updateData['_token'], $updateData['_method']);
+    //     return Article::where('id', $id)->update($updateData);
+    // }
+
+
+    public function  delete(int $id): bool
+    {
+        return Article::where('id', $id)->delete();
     }
 }

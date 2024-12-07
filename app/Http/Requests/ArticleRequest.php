@@ -22,7 +22,7 @@ class ArticleRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'category_id' => 'required|exists:categories,id',
             'tag_id' => 'required|exists:tags,id',
-            'status' => 'required|boolean',
+            'status' => 'boolean',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ];

@@ -34,4 +34,9 @@ class CategoryRepository
     {
         return Category::where('id', $id)->delete();
     }
+
+    public function findCategoriByCategoryId(int $id): Category
+    {
+        return Category::find($id);
+    }
 }

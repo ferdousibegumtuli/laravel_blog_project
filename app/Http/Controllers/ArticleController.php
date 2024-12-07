@@ -9,7 +9,6 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-
 class ArticleController extends Controller
 {
     private $articleRepository = null;
@@ -40,7 +39,6 @@ class ArticleController extends Controller
     {
         
         $articleIsSave = $this->articleRepository->insert($request);
-
         if($articleIsSave){
             return redirect('articles')->with('success', 'Article added successfully!');
         }
@@ -54,20 +52,27 @@ class ArticleController extends Controller
         //
     }
 
-    public function edit(Article $article)
+    public function edit(int $id)
     {
-        //
+        
+        $article = $this->articleRepository->edit($id);
+        return response()->json($article);
+        
     }
 
-
-    public function update(Request $request, Article $article)
+  
+    public function update(ArticleRequest $request, int $id)
     {
-        //
+        return view('admin.articles.edit');
+        // $updateData = $request->all();
+        // $this->categoryRepository->update($updateData, $id);
+        // return redirect('categories')->with('success', 'Category update successfully!');
     }
 
-
-    public function destroy(Article $article)
+    public function destroy(int $id)
     {
-        //
+        $this->articleRepository->delete($id);
+        return redirect('articles')->with('success', 'Article deleted successfully!');
+        
     }
 }

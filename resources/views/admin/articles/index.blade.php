@@ -30,20 +30,21 @@
                         <td>{{$article->category->category}}</td>
                         <td>{{$article->tag->tag}}</td>
                         @if($article->status == 1){
-                        <td> Published</td>
+                        <td> Published </td>
                         }@else{
-                        <td> Draft</td>
+                        <td> Draft </td>
                         }
                         @endif
                         <td>
-                            <button id="{{$article->id}}" type="button" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;"
-                                class="btn btn-primary btn-square editButton">
+                            <a href="{{ route('articles.edit', $article->id) }}" type="button"
+                                style="width: 25px; height:34px; padding: 9px 23px 9px 12px;"
+                                class="btn btn-primary btn-square">
                                 <i class="icon-edit"></i>
-                            </button>
+                            </a>
                             <form action="{{ route('articles.destroy', $article->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;">
+                                <button type="submit" class="btn btn-danger deleteButton" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;">
                                     <i class="icon-trash"></i>
                                 </button>
                             </form>
@@ -69,25 +70,48 @@
 </script>
 @endif
 
+@if(session('success'))
 <script>
+    Swal.fire({
+        title: 'Success!',
+        text: "{{ session('success') }}",
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
 
-$(document).ready(function() {
-    $('.editButton').click(function() {
-        var id = this.id;
-        
-        console.log(this);
-        $.ajax({
-            type: "GET",
-            url: "/articles/" + id + "/edit",
-            success: function(response) {
-                console.log(response);
-                
-                // $('#tag').val(response.tag);
-                $('#tagEditForm').attr('action', '/articles/' + id);
-            }
+@if(session('delete'))
+<script>
+    Swal.fire({
+        title: "Deleted!",
+        text: "{{ session('delete') }}",
+        icon: "success",
+         confirmButtonText: 'OK'
+    });
+</script>
+@endif
+
+<script>
+    $(document).ready(function() {
+        $('.deleteButton').click(function(e) {
+            e.preventDefault();
+
+            var form = $(this).closest('form');
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); 
+                }
+            });
         });
     });
-});
-
 </script>
 @endsection

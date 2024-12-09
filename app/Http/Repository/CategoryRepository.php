@@ -39,4 +39,11 @@ class CategoryRepository
     {
         return Category::find($id);
     }
+
+    public function countCategory()
+    {
+        $categories = Category::get();
+        return $categories->count();
+        
+    }
 }

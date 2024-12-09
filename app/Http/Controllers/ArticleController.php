@@ -55,24 +55,34 @@ class ArticleController extends Controller
     public function edit(int $id)
     {
         
+        $tags = $this->tagRepository->index();
+        $categories = $this->categoryRepository->index();
         $article = $this->articleRepository->edit($id);
-        return response()->json($article);
-        
+        return view('admin.articles.edit')->with(['categories' => $categories, 'tags' => $tags, 'articles' => $article]);
+
     }
 
   
     public function update(ArticleRequest $request, int $id)
     {
-        return view('admin.articles.edit');
-        // $updateData = $request->all();
-        // $this->categoryRepository->update($updateData, $id);
-        // return redirect('categories')->with('success', 'Category update successfully!');
+        
+        $articleIsUpdated = $this->articleRepository->update($request, $id);
+    
+        if ($articleIsUpdated) {
+            return redirect('articles')->with('success', 'Article updated successfully!');
+        }
+        
     }
 
     public function destroy(int $id)
     {
         $this->articleRepository->delete($id);
-        return redirect('articles')->with('success', 'Article deleted successfully!');
+        return redirect('articles')->with('delete', 'Article deleted successfully!');
         
     }
+
+
+
+    
+
 }

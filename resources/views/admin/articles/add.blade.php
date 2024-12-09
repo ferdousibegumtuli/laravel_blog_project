@@ -3,7 +3,7 @@
 <div class="card" style="margin-top: 20;margin-left: 20;margin-right:400px">
     <div class="card-block">
         <h4 class="sub-title">Create Article</h4>
-        `
+        
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>

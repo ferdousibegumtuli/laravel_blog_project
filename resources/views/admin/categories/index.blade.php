@@ -40,10 +40,14 @@
                                 data-toggle="modal" data-target="#editModal">
                                 <i class="icon-edit"></i>
                             </button>
+
+
+
                             <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger" style="width: 25px; height:34px; padding: 9px 23px 9px 12px;">
+                                <button type="button" class="btn btn-danger deleteButton"
+                                    style="width: 25px; height:34px; padding: 9px 23px 9px 12px;">
                                     <i class="icon-trash"></i>
                                 </button>
                             </form>
@@ -123,6 +127,17 @@
 </script>
 @endif
 
+@if(session('delete'))
+<script>
+    Swal.fire({
+        title: "Deleted!",
+        text: "{{ session('delete') }}",
+        icon: "success",
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
+
 <script>
     $(document).ready(function() {
         $('.editButton').click(function() {
@@ -135,6 +150,25 @@
                     console.log(response);
                     $('#category').val(response.category);
                     $('#categoryEditForm').attr('action', '/categories/' + id);
+                }
+            });
+        });
+
+        $('.deleteButton').click(function(e) {
+            e.preventDefault();
+
+            var form = $(this).closest('form');
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
                 }
             });
         });

@@ -16,14 +16,18 @@ class ArticleRepository
 
     }
 
+
     public function insert(ArticleRequest $request): bool
     {
         $articleInfo = $request->all();
-        $image = $request->file('image')->store('public/articles_images');
-        if (isset($image)) {
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('public/articles_images');
+            $articleInfo['image'] = $image; 
+        }
+
             unset($articleInfo['_token']);
             return Article::insert($articleInfo);
-        }
+        
         
     }
 
@@ -32,11 +36,17 @@ class ArticleRepository
         return Article::where('id', $id)->first();
     }
 
-    // public function update(array $updateData, int $id): bool
-    // {
-    //     unset($updateData['_token'], $updateData['_method']);
-    //     return Article::where('id', $id)->update($updateData);
-    // }
+    public function update(ArticleRequest $request, int $id): bool
+    {
+        $updateData = $request->all();
+    
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('public/articles_images');
+            $updateData['image'] = $image;
+        }
+        unset($updateData['_token'], $updateData['_method']);
+        return Article::where('id', $id)->update($updateData);
+    }
 
 
     public function  delete(int $id): bool

@@ -60,6 +60,6 @@ class TagController extends Controller
     public function destroy(int $id): object
     {
         $this->tagRepository->delete($id);
-        return redirect('tags')->with('success', 'Tag deleted successfully!');
+        return redirect('tags')->with('delete', 'Tag deleted successfully!');
     }
 }

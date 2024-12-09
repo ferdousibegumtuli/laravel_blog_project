@@ -38,12 +38,9 @@ class CategoryController extends Controller
     }
 
   
-    public function show(int $id): view
+    public function show(int $id)
     {
-        $category = $this->categoryRepository->findCategoriByCategoryId($id);
-        // return view("admin.articles.index")->with('category', $category);
-
-        return view("admin.articles.index", compact('category'));
+        //
     }
 
     public function edit(int $id): object 
@@ -65,6 +62,9 @@ class CategoryController extends Controller
     public function destroy(int $id): object
     {
         $this->categoryRepository->delete($id);
-        return redirect('categories')->with('success', 'Category deleted successfully!');
+        return redirect('categories')->with('delete', 'Category delete successfully!');
     }
+
+
+
 }

@@ -41,9 +41,10 @@ class ArticleController extends Controller
         $articleIsSave = $this->articleRepository->insert($request);
         if($articleIsSave){
             return redirect('articles')->with('success', 'Article added successfully!');
+        }else{
+            return view('admin.articles.add');
         }
 
-    
     }
 
 

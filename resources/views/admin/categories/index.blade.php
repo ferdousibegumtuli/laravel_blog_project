@@ -11,7 +11,6 @@
                             data-toggle="modal" data-target="#addModal">Add</button>
                     </div>
                 </div>
-
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -21,7 +20,6 @@
                     </ul>
                 </div>
                 @endif
-
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -113,7 +111,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @if(session('success'))

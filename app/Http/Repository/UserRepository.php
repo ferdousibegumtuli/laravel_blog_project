@@ -11,11 +11,9 @@ class UserRepository{
         return(User::get());
     }
 
-    public function insert(array $userInfo): bool
+    public function insert(array $userInfo): user
     {
-        unset($userInfo['_token']);
-        unset($userInfo['confirm_password']);
-        return User::insert($userInfo);
+        return User::create($userInfo);
     }
 
     public function edit(int $id): object

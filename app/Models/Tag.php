@@ -9,4 +9,10 @@ class Tag extends Model
 {
     use HasFactory;
     const TAG = 'tag';
+    const ID = 'id';
+
+    protected $fillable = [
+        self::TAG
+    ];
+    
 }

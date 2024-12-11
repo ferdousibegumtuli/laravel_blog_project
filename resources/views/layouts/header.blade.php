@@ -7,7 +7,7 @@
     webworkers no-applicationcache svg inlinesvg smil svgclippaths">
 
 <head>
-    
+
     <title>Blog Project</title>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <meta charset="utf-8">
@@ -25,47 +25,35 @@
     <link rel="stylesheet" type="text/css" href="/css/deshboard/jquery.mCustomScrollbar.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body themebg-pattern="pattern2">
-    <div id="pcoded" class="pcoded iscollapsed" theme-layout="vertical" vertical-placement="left" 
-    vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded"
-        vertical-effect="shrink" vnavigation-view="view1" 
+    <div id="pcoded" class="pcoded iscollapsed" theme-layout="vertical" vertical-placement="left"
+        vertical-layout="wide" pcoded-device-type="desktop" vertical-nav-type="expanded"
+        vertical-effect="shrink" vnavigation-view="view1"
         nav-type="st2" fream-type="theme1" layout-type="light">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
 
             <nav class="navbar header-navbar pcoded-header iscollapsed" header-theme="theme1" pcoded-header-position="fixed">
-                <div class="navbar-wrapper">
 
-                    <div class="navbar-logo" logo-theme="theme1">
-                        <a class="mobile-menu" id="mobile-collapse" href="#!">
-                            <i class="ti-menu"></i>
-                        </a>
-                        <a class="mobile-search morphsearch-search" href="#">
-                            <i class="ti-search"></i>
-                        </a>
-                        <a href="index.html">
-                            <img class="img-fluid" src="/images/deshboard/logo.png" alt="Theme-Logo">
-                        </a>
-                        <a class="mobile-options">
-                            <i class="ti-more"></i>
+                <div class="navbar-wrapper">
+                    <div class="navbar-logo" logo-theme="theme1" style="background:white";>
+                        <a href="">
+                            <img class="img-fluid" src="/images/deshboard/images.jpeg" 
+                            style=" width: 80px;" alt="avatar-hi">
                         </a>
                     </div>
-
                     <div class="navbar-container container-fluid">
                         <ul class="nav-left">
-                            welcome
-                            <li>
-                                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
-                            </li>
-
-                            <li>
-                                <a href="#!" onclick="javascript:toggleFullScreen()">
-                                    <i class="ti-fullscreen"></i>
-                                </a>
-                            </li>
+                            <div style="margin: 20; padding-left: 20px; font-family: system-ui;">
+                                <h3>Welcome, {{ Auth::user()->name }}!</h3>
+                                <h5 style="font-size: medium;font-family: system-ui;">
+                                    Let’s get started and bring your article to life.
+                                </h5>
+                            </div>
                         </ul>
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
@@ -76,15 +64,15 @@
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </li>
                                 </ul>
                             </li>
@@ -95,4 +83,3 @@
 
             <div class="pcoded-main-container" style="margin-top: 80px;">
                 <div class="pcoded-wrapper">
-          

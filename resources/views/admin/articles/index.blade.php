@@ -20,7 +20,7 @@
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-
+                </thead>
                 <tbody>
                     @foreach($articles as $key => $article)
                     <tr>
@@ -57,18 +57,6 @@
     </div>
 </div>
 
-</div>
-
-@if(session('success'))
-<script>
-    Swal.fire({
-        title: 'Success!',
-        text: "{{ session('success') }}",
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
-</script>
-@endif
 
 @if(session('success'))
 <script>
@@ -87,7 +75,7 @@
         title: "Deleted!",
         text: "{{ session('delete') }}",
         icon: "success",
-         confirmButtonText: 'OK'
+        confirmButtonText: 'OK'
     });
 </script>
 @endif
@@ -108,7 +96,7 @@
                 confirmButtonText: "Yes, delete it!"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    form.submit(); 
+                    form.submit();
                 }
             });
         });

@@ -17,7 +17,7 @@ class ArticleRepository
     }
 
 
-    public function insert(ArticleRequest $request): bool
+    public function insert(ArticleRequest $request): article
     {
         $articleInfo = $request->all();
         if ($request->hasFile('image')) {
@@ -25,9 +25,7 @@ class ArticleRepository
             $articleInfo['image'] = $image; 
         }
 
-            unset($articleInfo['_token']);
-            return Article::insert($articleInfo);
-        
+            return Article::create($articleInfo);
         
     }
 

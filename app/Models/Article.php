@@ -9,7 +9,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Article extends Model
 {
     use HasFactory;
-    const ARTICLE = 'article';
+    const TITLE = 'title';
+    const DESCRIPTION = 'description';
+    const USER_ID = 'user_id';
+    const CATEGORY_ID = 'category_id';
+    const TAG_ID = 'tag_id';
+    const STATUS = 'status';
+    const IMAGE = 'image';
+
+
+
+    protected $fillable = [
+        self::TITLE,
+        self::DESCRIPTION,
+        self::USER_ID,
+        self::CATEGORY_ID,
+        self::TAG_ID,
+        self::STATUS,
+        self::IMAGE,
+    ];
+
+
 
     public function category(): BelongsTo
     {

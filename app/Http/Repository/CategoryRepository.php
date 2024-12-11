@@ -13,26 +13,25 @@ class CategoryRepository
         return Category::get();
     }
 
-    public function insert(array $categoryInfo): bool
+    public function insert(array $categoryInfo): category
     {
-        unset($categoryInfo['_token']);
-        return Category::insert($categoryInfo);
+        return Category::create($categoryInfo);
     }
 
     public function edit(int $id): object
     {
-        return Category::where('id', $id)->first();
+        return Category::where(Category::ID, $id)->first();
     }
 
     public function update(array $updateData, int $id): bool
     {
         unset($updateData['_token'], $updateData['_method']);
-        return Category::where('id', $id)->update($updateData);
+        return Category::where(Category::ID, $id)->update($updateData);
     }
 
     public function delete(int $id): bool
     {
-        return Category::where('id', $id)->delete();
+        return Category::where(Category::ID, $id)->delete();
     }
 
     public function findCategoriByCategoryId(int $id): Category

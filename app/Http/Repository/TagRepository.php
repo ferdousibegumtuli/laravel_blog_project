@@ -12,25 +12,24 @@ class TagRepository
         return Tag::get();
     }
 
-    public function insert(array $tagInfo): bool
+    public function insert(array $tag): Tag
     {
-        unset($tagInfo['_token']);
-        return Tag::insert($tagInfo);
+        return Tag::create($tag);
     }
 
     public function edit(int $id): object
     {
-        return Tag::where('id', $id)->first();
+        return Tag::where(Tag::ID, $id)->first();
     }
 
     public function update(array $updateData, int $id): bool
     {
         unset($updateData['_token'], $updateData['_method']);
-        return Tag::where('id', $id)->update($updateData);
+        return Tag::where(Tag::ID, $id)->update($updateData);
     }
 
     public function delete(int $id): bool
     {
-        return Tag::where('id', $id)->delete();
+        return Tag::where(Tag::ID, $id)->delete();
     }
 }

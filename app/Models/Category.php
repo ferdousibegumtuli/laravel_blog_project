@@ -10,4 +10,9 @@ class Category extends Model
     use HasFactory;
 
     const CATEGORY = 'category';
+    const ID = 'id';
+
+    protected $fillable = [
+        self::CATEGORY 
+    ];
 }

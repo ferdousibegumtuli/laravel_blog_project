@@ -32,7 +32,7 @@ class DeshboardRepository
     {
         $results = DB::select("
             SELECT 
-                (SELECT COUNT(*) FROM articles WHERE status = '1') AS countStatus1,
+                (SELECT COUNT(*) FROM articles WHERE status = '1') AS publishedArticle,
                 (SELECT COUNT(*) FROM articles WHERE status = '0') AS draftArticle,
                 (SELECT COUNT(*) FROM categories) AS totalCategory,
                 (SELECT COUNT(*) FROM tags) AS totalTag,
@@ -46,12 +46,12 @@ class DeshboardRepository
         $articleCountsByMonth = DB::select(DB::raw("SELECT MONTHNAME(created_at) as 'month', 
         COUNT(*) AS 'total_article' FROM `articles` WHERE YEAR(created_at) = YEAR(now()) GROUP BY MONTH(created_at)"));
 
+// dd($articleCountsByMonth[0]);
         return [$results, $articles, $articleCountsByMonth];
     }
 }
 
 
-        // dd($articleCountsByMonth[0]->month);
         // $countStatus1 = $results[0]->countStatus1;
         // $draftArticle = $results[0]->draftArticle;
         // $totalCategory = $results[0]->totalCategory;

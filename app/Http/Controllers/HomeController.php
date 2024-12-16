@@ -36,36 +36,9 @@ class HomeController extends Controller
 
 
         $article =$this->deshboardRepository->index();
+        // dd($article);
         return view('admin.deshboard')->with('article', $article);
 
-        // $users = User::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
 
-        //     ->whereYear('created_at', date('Y'))
-        //     ->groupBy(DB::raw("Month(created_at)"))
-        //     ->pluck('count', 'month_name');
-
-        // $labels = $users->keys();
-
-        // $data = $users->values();
-
-        // return view('chart', compact('labels', 'data'));
-
-
-
-
-        // $publishedArticle = Article::where('status', '=', '1')->count()->where('status', '=', '0')->count();
-        // $draftArticle = Article::where('status', '=', '0')->count();
-        // $articles = Article::orderBy('id', 'desc')->limit(5)->get();
-        // $totalCategory = Category::count();
-        // $totalTag = Tag::count();
-
-        // return view('admin.deshboard')->with([
-        //         'totalCategory' => $totalCategory,
-        //         'totalTag' => $totalTag,
-        //         'publishedArticle' => $publishedArticle,
-        //         'draftArticle' => $draftArticle,
-        //         'articles' => $articles,
-
-        //     ]);
     }
 }

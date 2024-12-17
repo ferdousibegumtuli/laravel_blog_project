@@ -36,9 +36,9 @@ class HomeController extends Controller
 
 
         $article =$this->deshboardRepository->index();
-        $labels = $article[2][0]->month;
-        $data = $article[2][0]->total_article;
-        return view('admin.deshboard')->with(['article'=>$article, 'labels'=>$labels, 'data'=>$data] );
+        $monthName = $article[2][0]->month;
+        $totalArticle = $article[2][0]->total_article;
+        return view('admin.deshboard')->with(['article'=>$article, 'monthName'=>$monthName, 'totalArticle'=>$totalArticle] );
         // dd($article);
 
 

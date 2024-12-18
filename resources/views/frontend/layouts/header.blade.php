@@ -54,14 +54,29 @@
                 <a class="dropdown-item" href="travel.html">Cruises</a>
               </div>
             </li>
-            <li class="nav-item"> <a class="nav-link" href="contact.html">Sign In</a>
+            @if (Route::has('login'))
+            <li class="nav-item">
+              <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                @auth
+                <a href="{{ url('/deshboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Deshboard</a>
             </li>
-          </ul>
-          <!-- <div class="col-6" style="text-align: right;">
-            <button type="button" style="color: black; padding: 4" class="btn btn-primary waves-effect waves-light">Sign In</button>
-          </div> -->
+            @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('login') }}">Sign In</a>
+            </li>
+            @if (Route::has('register'))
+            <li class="nav-item">
+              <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+            </li>
+
+            @endif
+            @endauth
         </div>
-      </nav>
+        @endif
+        </ul>
+
+    </div>
+    </nav>
     </div>
   </header>
 

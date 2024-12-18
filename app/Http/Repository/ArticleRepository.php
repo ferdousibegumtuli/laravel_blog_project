@@ -13,7 +13,6 @@ class ArticleRepository
 
         return Article::with('category', 'tag', 'user')->get();
        
-
     }
 
 

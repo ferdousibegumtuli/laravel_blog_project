@@ -46,13 +46,8 @@ class DeshboardRepository
         $articleCountsByMonth = DB::select(DB::raw("SELECT MONTHNAME(created_at) as 'month', 
         COUNT(*) AS 'total_article' FROM `articles` WHERE YEAR(created_at) = YEAR(now()) GROUP BY MONTH(created_at)"));
 
-// dd($articleCountsByMonth[0]);
         return [$results, $articles, $articleCountsByMonth];
     }
 }
 
 
-        // $countStatus1 = $results[0]->countStatus1;
-        // $draftArticle = $results[0]->draftArticle;
-        // $totalCategory = $results[0]->totalCategory;
-        // $totalTag = $results[0]->totalTag;

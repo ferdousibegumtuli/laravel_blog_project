@@ -5,175 +5,66 @@
     <div class="col-12">
       <h2 class="section-title">Latest Articles</h2>
     </div>
-   
+  
+    
+
+    <!-- dd({{$articles[1]}}); -->
   
   <div class="col-lg-8 mb-5 mb-lg-0">
     <div class="row">
+
       <div class="col-12 mb-4">
         <article class="card article-card">
           <a href="article.html">
             <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">04 Jun 2021</span>
+              <div class="post-info"> <span class="text-uppercase">{{$articles[2]['created_at']}}</span>
                 <span class="text-uppercase">3 minutes read</span>
               </div>
-              <img loading="lazy" decoding="async" src="images/frontend/post-1.jpg" alt="Post Thumbnail" class="w-100">
+              <img loading="lazy" decoding="async" src="{{$articles[2]['image']}}" alt="Post Thumbnail" class="w-100">
             </div>
           </a>
           <div class="card-body px-0 pb-1">
             <ul class="post-meta mb-2">
-              <li> <a href="#!">travel</a>
-                <a href="#!">news</a>
+              <li> <a href="#!">{{$articles[2]['category']['category']}}</a>
+                <a href="#!">{{$articles[2]['tag']['tag']}}</a>
               </li>
             </ul>
-            <h2 class="h1"><a class="post-title" href="article.html">Is it Ethical to Travel Now?
-                With that Freedom Comes Responsibility.</a></h2>
-            <p class="card-text">Heading Here is example of hedings. You can use this heading by following markdownify rules. For example: use # for heading 1 and use ###### for heading 6.</p>
+            <h2 class="h1"><a class="post-title" href="article.html">
+            {{$articles[2]['title']}}</a></h2>
+            <p class="card-text">{{substr($articles[2]['description'],0 ,250)."..."}}</p>
             <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
             </div>
           </div>
         </article>
       </div>
-      <div class="col-md-6 mb-4">
+
+      @foreach($articles[1] as $article)
+      <div class="col-md-6 mb-4"> 
         <article class="card article-card article-card-sm h-100">
           <a href="article.html">
             <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">03 Jun 2021</span>
+              <div class="post-info"> <span class="text-uppercase">{{$article['created_at']}}</span>
                 <span class="text-uppercase">2 minutes read</span>
               </div>
-              <img loading="lazy" decoding="async" src="images/frontend/post-2.jpg" alt="Post Thumbnail" class="w-100">
+              <img loading="lazy" decoding="async" src="{{$article['image']}}" alt="Post Thumbnail" class="w-100">
             </div>
           </a>
           <div class="card-body px-0 pb-0">
             <ul class="post-meta mb-2">
-              <li> <a href="#!">travel</a>
+              <li> <a href="#!">{{$article['category']['category']}}</a>
               </li>
             </ul>
-            <h2><a class="post-title" href="article.html">An
-                Experiential Guide to Explore This Kingdom</a></h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna …</p>
+            <h2><a class="post-title" href="article.html">
+            {{$article['title']}}  </a></h2>
+            <p class="card-text">{{substr($article['description'],0 ,150)."..."}}</p>
             <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
             </div>
           </div>
         </article>
       </div>
-      <div class="col-md-6 mb-4">
-        <article class="card article-card article-card-sm h-100">
-          <a href="article.html">
-            <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">02 Jun 2021</span>
-                <span class="text-uppercase">2 minutes read</span>
-              </div>
-              <img loading="lazy" decoding="async" src="/images/frontend/ls-2.jpg" alt="Post Thumbnail" class="w-100">
-            </div>
-          </a>
-          <div class="card-body px-0 pb-0">
-            <ul class="post-meta mb-2">
-              <li> <a href="#!">lifestyle</a>
-              </li>
-            </ul>
-            <h2><a class="post-title" href="article.html">What
-                to Do in Houston: Ideas for Your Visit</a></h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna …</p>
-            <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6 mb-4">
-        <article class="card article-card article-card-sm h-100">
-          <a href="article.html">
-            <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">01 Jun 2021</span>
-                <span class="text-uppercase">3 minutes read</span>
-              </div>
-              <img loading="lazy" decoding="async" src="images/frontend/cr-1.jpg" alt="Post Thumbnail" class="w-100">
-            </div>
-          </a>
-          <div class="card-body px-0 pb-0">
-            <ul class="post-meta mb-2">
-              <li> <a href="#!">cruises</a>
-                <a href="#!">news</a>
-              </li>
-            </ul>
-            <h2><a class="post-title" href="article.html">Alaska
-                Cruises Will Restart as Biden Signs New Tourism Law</a></h2>
-            <p class="card-text">Heading Here is example of hedings. You can use this heading by following markdownify rules. For example: use # for …</p>
-            <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6 mb-4">
-        <article class="card article-card article-card-sm h-100">
-          <a href="article.html">
-            <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">30 May 2021</span>
-                <span class="text-uppercase">3 minutes read</span>
-              </div>
-              <img loading="lazy" decoding="async" src="images/frontend/cr-2.jpg" alt="Post Thumbnail" class="w-100">
-            </div>
-          </a>
-          <div class="card-body px-0 pb-0">
-            <ul class="post-meta mb-2">
-              <li> <a href="#!">cruises</a>
-                <a href="#!">news</a>
-              </li>
-            </ul>
-            <h2><a class="post-title" href="article.html">U.S.
-                Travel Association Calls on CDC to Remove Cruise Restrictions</a></h2>
-            <p class="card-text">Heading Here is example of hedings. You can use this heading by following markdownify rules. For example: use # for …</p>
-            <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6 mb-4">
-        <article class="card article-card article-card-sm h-100">
-          <a href="article.html">
-            <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">29 May 2021</span>
-                <span class="text-uppercase">3 minutes read</span>
-              </div>
-              <img loading="lazy" decoding="async" src="images/frontend/post-4.jpg" alt="Post Thumbnail" class="w-100">
-            </div>
-          </a>
-          <div class="card-body px-0 pb-0">
-            <ul class="post-meta mb-2">
-              <li> <a href="#!">destination</a>
-              </li>
-            </ul>
-            <h2><a class="post-title" href="article.html">Top 7 Reasons to
-                Visit Denver This Summer</a></h2>
-            <p class="card-text">Heading Here is example of hedings. You can use this heading by following markdownify rules. For example: use # for …</p>
-            <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-6 mb-4">
-        <article class="card article-card article-card-sm h-100">
-          <a href="article.html">
-            <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">28 May 2021</span>
-                <span class="text-uppercase">2 minutes read</span>
-              </div>
-              <img loading="lazy" decoding="async" src="images/frontend/post-8.jpg" alt="Post Thumbnail" class="w-100">
-            </div>
-          </a>
-          <div class="card-body px-0 pb-0">
-            <ul class="post-meta mb-2">
-              <li> <a href="#!">news</a>
-                <a href="#!">tips</a>
-              </li>
-            </ul>
-            <h2><a class="post-title" href="article.html">An Experiential
-                Guide to Explore This Kingdom</a></h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna …</p>
-            <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
-            </div>
-          </div>
-        </article>
-      </div>
+      @endforeach
+
+
       <div class="col-12">
         <div class="row">
           <div class="col-12">
@@ -211,16 +102,19 @@
       </div>
     </div>
   </div>
+
   <div class="col-lg-4">
     <div class="widget-blocks">
       <div class="row">
         <div class="col-lg-12">
           <div class="widget">
             <div class="widget-body">
-              <img loading="lazy" decoding="async" src="images/frontend/blogPic.jpg" alt="About Me" class="w-100 author-thumb-sm d-block">
-              <h2 class="widget-title my-3">Hootan Safiyari</h2>
+              <img loading="lazy" decoding="async" src="images/frontend/article4.webp" alt="About Me" style="width:350px;" class="author-thumb-sm d-block">
+              <h2 class="widget-title my-3"> Stories To Spark Your Mind</h2>
               <p class="mb-3 pb-2">
-                Hello, I’m Hootan Safiyari. A Content writter, Developer and Story teller. Working as a Content writter at CoolTech Agency. Quam nihil …
+              <h4 style="display: inline;"> Welcome! </h4> This blog is where you'll find fresh ideas, tips, and stories to inspire you. 
+              Whether you're looking for travel ideas or just something new to think about, 
+              you’ve come to the right place. Let’s explore together!
               </p> 
             </div>
           </div>
@@ -244,33 +138,17 @@
                     </div>
                   </div>
                 </article>
+
+                @foreach($articles[0] as $article)
                 <a class="media align-items-center" href="article.html">
-                  <img loading="lazy" decoding="async" src="images/frontend/post-2.jpg" alt="Post Thumbnail" class="w-100">
+                  <img loading="lazy" decoding="async" src="{{$article['image']}}" alt="Post Thumbnail" class="w-100">
                   <div class="media-body ml-3">
-                    <h3 style="margin-top:-5px">These Are Making It Easier To Visit</h3>
-                    <p class="mb-0 small">Heading Here is example of hedings. You can use …</p>
+                    <h3 style="margin-top:-5px">{{$article['title']}}</h3>
+                    <p class="mb-0 small">{{substr($article['description'],0 ,150)."..."}}</p>
                   </div>
                 </a>
-                <a class="media align-items-center" href="article.html"> <span class="image-fallback image-fallback-xs">No Image Specified</span>
-                  <div class="media-body ml-3">
-                    <h3 style="margin-top:-5px">No Image specified</h3>
-                    <p class="mb-0 small">Lorem ipsum dolor sit amet, consectetur adipiscing …</p>
-                  </div>
-                </a>
-                <a class="media align-items-center" href="article.html">
-                  <img loading="lazy" decoding="async" src="images/frontend/post-5.jpg" alt="Post Thumbnail" class="w-100">
-                  <div class="media-body ml-3">
-                    <h3 style="margin-top:-5px">Perfect For Fashion</h3>
-                    <p class="mb-0 small">Lorem ipsum dolor sit amet, consectetur adipiscing …</p>
-                  </div>
-                </a>
-                <a class="media align-items-center" href="article.html">
-                  <img loading="lazy" decoding="async" src="images/frontend/post-9.jpg" alt="Post Thumbnail" class="w-100">
-                  <div class="media-body ml-3">
-                    <h3 style="margin-top:-5px">Record Utra Smooth Video</h3>
-                    <p class="mb-0 small">Lorem ipsum dolor sit amet, consectetur adipiscing …</p>
-                  </div>
-                </a>
+                @endforeach
+
               </div>
             </div>
           </div>

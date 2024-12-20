@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register'=>false]);
 Route::resource('/',FrontendController::class);
+// Route::get('/', [FrontendController::class, 'index'])->name('index');
+// Route::get('/category/{id}', [FrontendController::class, 'store']);
 Route::get('/deshboard', [HomeController::class, 'index'])->name('deshboard');
 Route::resource('/users', UserController::class);
 Route::resource('/categories', CategoryController::class);

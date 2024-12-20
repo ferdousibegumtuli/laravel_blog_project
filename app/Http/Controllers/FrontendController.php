@@ -30,13 +30,13 @@ class FrontendController extends Controller
    
     public function store(Request $request)
     {
-        //
     }
-
-
+    
+    
     public function show($id)
     {
-        //
+        return view('admin.categories.index');
+        // return view('frontend.categoryPage');
     }
 
 

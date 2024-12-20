@@ -174,8 +174,6 @@
 </div>
 
 <script type="text/javascript">
-    var labels = {{ Js::from($monthName) }};
-    var users = {{ Js::from($totalArticle) }};
     
     const data = {
         labels: labels,

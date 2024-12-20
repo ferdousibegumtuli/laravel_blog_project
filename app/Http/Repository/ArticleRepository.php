@@ -20,7 +20,7 @@ class ArticleRepository
     {
         $articleInfo = $request->all();
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('public/articles_images');
+            $image = $request->file('image')->store('/articles_images');
             $articleInfo['image'] = $image; 
         }
 

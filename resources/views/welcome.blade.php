@@ -1,15 +1,15 @@
 @extends('frontend.layouts.app')
 @section('content')
 <div class="row no-gutters-lg">
- 
-    <div class="col-12">
-      <h2 class="section-title">Latest Articles</h2>
-    </div>
-  
-    
 
-    <!-- dd({{$articles[1]}}); -->
-  
+  <div class="col-12">
+    <h2 class="section-title">Latest Articles</h2>
+  </div>
+
+
+
+  <!-- dd({{$articles[1]}}); -->
+
   <div class="col-lg-8 mb-5 mb-lg-0">
     <div class="row">
 
@@ -20,7 +20,7 @@
               <div class="post-info"> <span class="text-uppercase">{{$articles[2]['created_at']}}</span>
                 <span class="text-uppercase">3 minutes read</span>
               </div>
-              <img loading="lazy" decoding="async" src="{{$articles[2]['image']}}" alt="Post Thumbnail" class="w-100">
+              <img loading="lazy" decoding="async" src="{{$articles[2]['image']}}" alt="Post Thumbnail" class="w-100" style="height: 500px;">
             </div>
           </a>
           <div class="card-body px-0 pb-1">
@@ -30,23 +30,27 @@
               </li>
             </ul>
             <h2 class="h1"><a class="post-title" href="article.html">
-            {{$articles[2]['title']}}</a></h2>
+                {{$articles[2]['title']}}</a></h2>
             <p class="card-text">{{substr($articles[2]['description'],0 ,250)."..."}}</p>
             <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
             </div>
           </div>
         </article>
       </div>
-
       @foreach($articles[1] as $article)
-      <div class="col-md-6 mb-4"> 
+      <div class="col-md-6 mb-4">
         <article class="card article-card article-card-sm h-100">
           <a href="article.html">
             <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">{{$article['created_at']}}</span>
-                <span class="text-uppercase">2 minutes read</span>
+              <div class="post-info">
+                <span class="text-uppercase">{{$article['created_at']}}</span>
               </div>
-              <img loading="lazy" decoding="async" src="{{$article['image']}}" alt="Post Thumbnail" class="w-100">
+              @if(!empty($article['image']))
+              <img loading="lazy" decoding="async" src="{{($article['image']) }}" alt="Post Thumbnail" class="w-100" style="height: 300px;">
+              @else
+              <img loading="lazy" decoding="async" src="{{ asset('articles_images/defaultPic.jpg') }}"
+                alt="Default Thumbnail" class="w-100" style="height: 300px;">
+              @endif
             </div>
           </a>
           <div class="card-body px-0 pb-0">
@@ -55,7 +59,7 @@
               </li>
             </ul>
             <h2><a class="post-title" href="article.html">
-            {{$article['title']}}  </a></h2>
+                {{$article['title']}} </a></h2>
             <p class="card-text">{{substr($article['description'],0 ,150)."..."}}</p>
             <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
             </div>
@@ -112,10 +116,10 @@
               <img loading="lazy" decoding="async" src="images/frontend/article4.webp" alt="About Me" style="width:350px;" class="author-thumb-sm d-block">
               <h2 class="widget-title my-3"> Stories To Spark Your Mind</h2>
               <p class="mb-3 pb-2">
-              <h4 style="display: inline;"> Welcome! </h4> This blog is where you'll find fresh ideas, tips, and stories to inspire you. 
-              Whether you're looking for travel ideas or just something new to think about, 
+              <h4 style="display: inline;"> Welcome! </h4> This blog is where you'll find fresh ideas, tips, and stories to inspire you.
+              Whether you're looking for travel ideas or just something new to think about,
               you’ve come to the right place. Let’s explore together!
-              </p> 
+              </p>
             </div>
           </div>
         </div>
@@ -124,16 +128,16 @@
             <h2 class="section-title mb-3">Recommended</h2>
             <div class="widget-body">
               <div class="widget-list">
+
                 <article class="card mb-4">
                   <div class="card-image">
-                    <div class="post-info"> <span class="text-uppercase">1 minutes read</span>
-                    </div>
-                    <img loading="lazy" decoding="async" src="images/frontend/post-9.jpg" alt="Post Thumbnail" class="w-100">
+                    <img loading="lazy" decoding="async" src="{{$articles[5]['image']}}" alt="Post Thumbnail" class="w-100">
                   </div>
                   <div class="card-body px-0 pb-1">
-                    <h3><a class="post-title post-title-sm" href="article.html">Portugal and France Now
-                        Allow Unvaccinated Tourists</a></h3>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor …</p>
+                    <h3><a class="post-title post-title-sm" href="article.html">
+                        {{$articles[5]['title']}}
+                      </a></h3>
+                    <p class="card-text">{{substr($articles[5]['description'],0 ,150)."..."}}</p>
                     <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
                     </div>
                   </div>

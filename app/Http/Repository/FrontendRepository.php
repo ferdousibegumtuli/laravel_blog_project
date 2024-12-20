@@ -22,7 +22,12 @@ class FrontendRepository
         $firstArticle = Article::with('category', 'tag', 'user')
         ->oldest() 
         ->first(); 
+        $lastArticle = Article::with('category', 'tag', 'user')
+        ->latest() 
+        ->first(); 
+        $categories = Category::get();
+        $tags = Tag::get();
             
-        return [$lastFiveArticles, $firstFiveArticles, $firstArticle];
+        return [$lastFiveArticles, $firstFiveArticles, $firstArticle, $categories, $tags, $lastArticle];
     }
 }

@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
   <header class="navigation">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light px-0">
@@ -40,18 +39,20 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Category
               </a>
-              <div class="dropdown-menu"> <a class="dropdown-item" href="travel.html">Travel</a>
-                <a class="dropdown-item" href="travel.html">Lifestyle</a>
-                <a class="dropdown-item" href="travel.html">Cruises</a>
+              <div class="dropdown-menu">
+                @foreach($articles[3] as $categories)
+                <a class="dropdown-item" href="{{ route('show', $categories['id']) }}">{{$categories['category']}}</a>
+                @endforeach
               </div>
             </li>
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Tag
               </a>
-              <div class="dropdown-menu"> <a class="dropdown-item" href="travel.html">Travel</a>
-                <a class="dropdown-item" href="travel.html">Lifestyle</a>
-                <a class="dropdown-item" href="travel.html">Cruises</a>
+              <div class="dropdown-menu">
+                @foreach($articles[4] as $tags)
+                <a class="dropdown-item" href="travel.html">{{$tags['tag']}}</a>
+                @endforeach
               </div>
             </li>
             @if (Route::has('login'))

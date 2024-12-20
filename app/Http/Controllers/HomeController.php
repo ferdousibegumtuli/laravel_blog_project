@@ -34,13 +34,12 @@ class HomeController extends Controller
     public function index()
     {
 
-
         $article =$this->deshboardRepository->index();
-        $monthName = $article[2][0]->month;
-        $totalArticle = $article[2][0]->total_article;
-        return view('admin.deshboard')->with(['article'=>$article, 'monthName'=>$monthName, 'totalArticle'=>$totalArticle] );
-        // dd($article);
+        if(!empty($article)){
 
+            return view('admin.deshboard')->with(['article'=>$article] );
+        }
 
+        return view('admin.deshboard');
     }
 }

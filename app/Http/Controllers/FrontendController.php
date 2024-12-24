@@ -18,41 +18,29 @@ class FrontendController extends Controller
     {
 
         $articles = $this->frontendRepository->index();
-        return view('welcome')->with('articles', $articles);
+        return view('welcome', compact('articles'));
+
     }
 
     
-    public function create()
+    public function viewCategoryById(int $id)
     {
-        //
+        $articles = $this->frontendRepository->articleGetByCategoryId($id);
+        return view('frontend.categoryPage')->with('articles', $articles);
+    }
+
+
+    public function viewTagById(int $id)
+    {
+        $articles = $this->frontendRepository->articleGetByTagId($id);
+        return view('frontend.tagPage')->with('articles', $articles);
+    }
+    
+    public function viewArticleById(int $id)
+    {
+        $articles = $this->frontendRepository->showArticleById($id);
+        // return view('frontend.tagPage')->with('articles', $articles);
     }
 
    
-    public function store(Request $request)
-    {
-    }
-    
-    
-    public function show($id)
-    {
-        return view('admin.categories.index');
-        // return view('frontend.categoryPage');
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
 }

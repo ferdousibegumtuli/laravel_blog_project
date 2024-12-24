@@ -5,11 +5,6 @@
   <div class="col-12">
     <h2 class="section-title">Latest Articles</h2>
   </div>
-
-
-
-  <!-- dd({{$articles[1]}}); -->
-
   <div class="col-lg-8 mb-5 mb-lg-0">
     <div class="row">
 
@@ -17,27 +12,27 @@
         <article class="card article-card">
           <a href="article.html">
             <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">{{$articles[2]['created_at']}}</span>
+              <div class="post-info"> <span class="text-uppercase">{{$articles[4]['created_at']}}</span>
                 <span class="text-uppercase">3 minutes read</span>
               </div>
-              <img loading="lazy" decoding="async" src="{{$articles[2]['image']}}" alt="Post Thumbnail" class="w-100" style="height: 500px;">
+              <img loading="lazy" decoding="async" src="{{$articles[4]['image']}}" alt="Post Thumbnail" class="w-100" style="height: 500px;">
             </div>
           </a>
           <div class="card-body px-0 pb-1">
             <ul class="post-meta mb-2">
-              <li> <a href="#!">{{$articles[2]['category']['category']}}</a>
-                <a href="#!">{{$articles[2]['tag']['tag']}}</a>
+              <li> <a href="#!">{{$articles[4]['category']['category']}}</a>
+                <a href="#!">{{$articles[4]['tag']['tag']}}</a>
               </li>
             </ul>
             <h2 class="h1"><a class="post-title" href="article.html">
-                {{$articles[2]['title']}}</a></h2>
-            <p class="card-text">{{substr($articles[2]['description'],0 ,250)."..."}}</p>
+                {{$articles[4]['title']}}</a></h2>
+            <p class="card-text">{{substr($articles[4]['description'],0 ,250)."..."}}</p>
             <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
             </div>
           </div>
         </article>
       </div>
-      @foreach($articles[1] as $article)
+      @foreach($articles[3] as $article)
       <div class="col-md-6 mb-4">
         <article class="card article-card article-card-sm h-100">
           <a href="article.html">
@@ -113,7 +108,8 @@
         <div class="col-lg-12">
           <div class="widget">
             <div class="widget-body">
-              <img loading="lazy" decoding="async" src="images/frontend/article4.webp" alt="About Me" style="width:350px;" class="author-thumb-sm d-block">
+              <img loading="lazy" decoding="async" src="images/frontend/article.jpeg" alt="About Me" style= "width: 350; height: 230"; 
+              class="author-thumb-sm d-block">
               <h2 class="widget-title my-3"> Stories To Spark Your Mind</h2>
               <p class="mb-3 pb-2">
               <h4 style="display: inline;"> Welcome! </h4> This blog is where you'll find fresh ideas, tips, and stories to inspire you.
@@ -143,7 +139,7 @@
                   </div>
                 </article>
 
-                @foreach($articles[0] as $article)
+                @foreach($articles[2] as $article)
                 <a class="media align-items-center" href="article.html">
                   <img loading="lazy" decoding="async" src="{{$article['image']}}" alt="Post Thumbnail" class="w-100">
                   <div class="media-body ml-3">
@@ -162,28 +158,10 @@
             <h2 class="section-title mb-3">Categories</h2>
             <div class="widget-body">
               <ul class="widget-list">
-                <li><a href="#!">computer<span class="ml-auto">(3)</span></a>
+              @foreach($articles[0] as $categories)
+                <li><a href="#!">{{$categories['category']}}</a>
                 </li>
-                <li><a href="#!">cruises<span class="ml-auto">(2)</span></a>
-                </li>
-                <li><a href="#!">destination<span class="ml-auto">(1)</span></a>
-                </li>
-                <li><a href="#!">internet<span class="ml-auto">(4)</span></a>
-                </li>
-                <li><a href="#!">lifestyle<span class="ml-auto">(2)</span></a>
-                </li>
-                <li><a href="#!">news<span class="ml-auto">(5)</span></a>
-                </li>
-                <li><a href="#!">telephone<span class="ml-auto">(1)</span></a>
-                </li>
-                <li><a href="#!">tips<span class="ml-auto">(1)</span></a>
-                </li>
-                <li><a href="#!">travel<span class="ml-auto">(3)</span></a>
-                </li>
-                <li><a href="#!">website<span class="ml-auto">(4)</span></a>
-                </li>
-                <li><a href="#!">hugo<span class="ml-auto">(2)</span></a>
-                </li>
+              @endforeach
               </ul>
             </div>
           </div>

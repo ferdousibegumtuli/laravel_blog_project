@@ -5,10 +5,11 @@ namespace App\Http\Repository;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Database\Eloquent\Collection;
 
 class FrontendRepository
 {
-    public function index()
+    public function index(): array
     {
         
         $lastFiveArticles = Article::with('category', 'tag', 'user')
@@ -28,6 +29,50 @@ class FrontendRepository
         $categories = Category::get();
         $tags = Tag::get();
             
-        return [$lastFiveArticles, $firstFiveArticles, $firstArticle, $categories, $tags, $lastArticle];
+        return [$categories, $tags, $lastFiveArticles, $firstFiveArticles, $firstArticle, $lastArticle];
     }
+
+    public function articleGetByCategoryId($id): array
+    {
+        $categories = Category::get();
+        $tags = Tag::get();
+        $articleByCategoryId = Article::with('category', 'tag', 'user')->where('category_id', $id)->get();
+        $lastFiveArticlesByCategoryId = Article::with('category', 'tag', 'user')
+        ->where('category_id', $id)
+        ->latest() 
+        ->take(4)
+        ->get();
+        $lastArticleByCategoryId = Article::with('category', 'tag', 'user')
+        ->where('category_id', $id)
+        ->latest() 
+        ->first(); 
+        $getCategoryByCategoryId = Category::find($id);
+
+        return [$categories, $tags, $articleByCategoryId, $lastFiveArticlesByCategoryId, $lastArticleByCategoryId, $getCategoryByCategoryId];
+    }
+
+    public function articleGetByTagId($id): array
+    {
+        $categories = Category::get();
+        $tags = Tag::get();
+        $articleByTagId = Article::with('category', 'tag', 'user')->where('tag_id', $id)->get();
+        $lastFiveArticlesByTagId = Article::with('category', 'tag', 'user')
+        ->where('tag_id', $id)
+        ->latest() 
+        ->take(4)
+        ->get();
+        $lastArticleByTagId = Article::with('category', 'tag', 'user')
+        ->where('tag_id', $id)
+        ->latest() 
+        ->first();
+        $getTagByTagId = Tag::find($id); 
+        return [$categories, $tags, $articleByTagId, $lastFiveArticlesByTagId, $lastArticleByTagId, $getTagByTagId];
+    }
+
+    public function showArticleById($id)
+    {
+        
+    }
+
+
 }

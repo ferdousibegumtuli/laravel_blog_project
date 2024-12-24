@@ -40,8 +40,8 @@
                 Category
               </a>
               <div class="dropdown-menu">
-                @foreach($articles[3] as $categories)
-                <a class="dropdown-item" href="{{ route('show', $categories['id']) }}">{{$categories['category']}}</a>
+                @foreach($articles[0] as $categories)
+                <a class="dropdown-item" href="{{ route('showCategory', $categories['id']) }}">{{$categories['category']}}</a>
                 @endforeach
               </div>
             </li>
@@ -50,8 +50,8 @@
                 Tag
               </a>
               <div class="dropdown-menu">
-                @foreach($articles[4] as $tags)
-                <a class="dropdown-item" href="travel.html">{{$tags['tag']}}</a>
+                @foreach($articles[1] as $tags)
+                <a class="dropdown-item" href="{{ route('showTag', $tags['id']) }}">{{$tags['tag']}}</a>
                 @endforeach
               </div>
             </li>

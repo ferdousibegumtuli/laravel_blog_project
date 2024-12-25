@@ -37,7 +37,7 @@ class FrontendRepository
         $categories = Category::get();
         $tags = Tag::get();
         $articleByCategoryId = Article::with('category', 'tag', 'user')->where('category_id', $id)->get();
-        $lastFiveArticlesByCategoryId = Article::with('category', 'tag', 'user')
+        $lastFourArticlesByCategoryId = Article::with('category', 'tag', 'user')
         ->where('category_id', $id)
         ->latest() 
         ->take(4)
@@ -48,7 +48,7 @@ class FrontendRepository
         ->first(); 
         $getCategoryByCategoryId = Category::find($id);
 
-        return [$categories, $tags, $articleByCategoryId, $lastFiveArticlesByCategoryId, $lastArticleByCategoryId, $getCategoryByCategoryId];
+        return [$categories, $tags, $articleByCategoryId, $lastFourArticlesByCategoryId, $lastArticleByCategoryId, $getCategoryByCategoryId];
     }
 
     public function articleGetByTagId($id): array
@@ -71,6 +71,18 @@ class FrontendRepository
 
     public function showArticleById($id)
     {
+        $categories = Category::get();
+        $tags = Tag::get();
+        $articleGetById = Article::with('category', 'tag', 'user')->where('id', $id)->get();
+        $getLastFiveArticle = Article::with('category', 'tag', 'user')
+        ->latest() 
+        ->take(4)
+        ->get();
+        $getLastArticle = Article::with('category', 'tag', 'user')
+        ->where('id', $id)
+        ->latest() 
+        ->first(); 
+        return [$categories, $tags, $articleGetById, $getLastFiveArticle, $getLastArticle];
         
     }
 

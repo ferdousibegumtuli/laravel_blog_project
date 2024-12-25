@@ -39,7 +39,8 @@ class FrontendController extends Controller
     public function viewArticleById(int $id)
     {
         $articles = $this->frontendRepository->showArticleById($id);
-        // return view('frontend.tagPage')->with('articles', $articles);
+        // dd($articles);
+        return view('frontend.singlePage')->with('articles', $articles);
     }
 
    

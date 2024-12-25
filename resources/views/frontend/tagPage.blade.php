@@ -2,9 +2,9 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="breadcrumbs mb-4"> <a href="index.html">Home</a>
-            <span class="mx-1">/</span> <a href="#!">Articles</a>
-            <span class="mx-1">/</span> <a href="#!">{{$articles[5]['tag']}}</a>
+        <div class="breadcrumbs mb-4"> <a href="/">Home</a>
+            <span class="mx-1">/</span> Articles
+            <span class="mx-1">/</span> <a href="">{{$articles[5]['tag']}}</a>
         </div>
         <h1 class="mb-4 border-bottom border-primary d-inline-block">{{$articles[5]['tag']}}</h1>
     </div>
@@ -13,7 +13,7 @@
             @foreach($articles[2] as $article)
             <div class="col-md-6 mb-4">
                 <article class="card article-card article-card-sm h-100">
-                    <a href="article.html">
+                    <a href="/{{$article['id']}}/article">
                         <div class="card-image">
                             <div class="post-info"> <span class="text-uppercase">{{$article['created_at']}}</span>
                             </div>
@@ -28,13 +28,13 @@
                     </a>
                     <div class="card-body px-0 pb-0">
                         <ul class="post-meta mb-2">
-                            <li> <a href="#!">{{$article['category']['category']}}</a>
-                                <a href="#!">{{$article['tag']['tag']}}</a>
+                            <li>
+                                 <a href="/{{$article['category']['id']}}/category">{{$article['category']['category']}}</a>
                             </li>
                         </ul>
-                        <h2><a class="post-title" href="article.html">{{($article['title']) }}</a></h2>
+                        <h2><a class="post-title" href="/{{$article['id']}}/article">{{($article['title']) }}</a></h2>
                         <p class="card-text">{{substr($article['description'],0 ,150)."..."}}</p>
-                        <div class="content"> <a class="read-more-btn" href="/articles/travel/post-1/">Read Full Article</a>
+                        <div class="content"> <a class="read-more-btn" href="/{{$article['id']}}/article">Read Full Article</a>
                         </div>
                     </div>
                 </article>
@@ -69,14 +69,14 @@
                                         style="height: 300px;">
                                     </div>
                                     <div class="card-body px-0 pb-1">
-                                        <h3><a class="post-title post-title-sm" href="article.html">{{$articles[4]['title']}}</a></h3>
+                                        <h3><a class="post-title post-title-sm" href="/{{$articles[4]['id']}}/article">{{$articles[4]['title']}}</a></h3>
                                         <p class="card-text">{{substr($articles[4]['description'],0 ,150)."..."}}</p>
-                                        <div class="content"> <a class="read-more-btn" href="article.html">Read Full Article</a>
+                                        <div class="content"> <a class="read-more-btn" href="/{{$articles[4]['id']}}/article">Read Full Article</a>
                                         </div>
                                     </div>
                                 </article>
                                 @foreach($articles[3] as $article)
-                                <a class="media align-items-center" href="article.html">
+                                <a class="media align-items-center" href="/{{$article['id']}}/article">
                                     <img loading="lazy" decoding="async" src="{{asset($article['image'])}}" alt="Post Thumbnail" class="w-100">
                                     <div class="media-body ml-3">
                                         <h3 style="margin-top:-5px">{{$article['title']}}</h3>
@@ -90,11 +90,11 @@
                 </div>
                 <div class="col-lg-12 col-md-6">
                     <div class="widget">
-                        <h2 class="section-title mb-3">Categories</h2>
+                        <h2 class="section-title mb-3">Tags</h2>
                         <div class="widget-body">
                             <ul class="widget-list">
                             @foreach($articles[1] as $tag)
-                                <li><a href="#!">{{$tag['tag']}}</a>
+                                <li><a href="/{{$tag['id']}}/article">{{$tag['tag']}}</a>
                                 </li>
                             @endforeach
                             </ul>

@@ -174,6 +174,10 @@
 </div>
 
 <script type="text/javascript">
+
+var labels =  {{ Js::from($labels) }};
+
+var users =  {{ Js::from($data) }};
     
     const data = {
         labels: labels,

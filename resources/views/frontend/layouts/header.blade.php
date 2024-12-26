@@ -28,20 +28,20 @@
             data-target="#navigation"> <span class="navbar-toggler-icon"></span>
           </button>
         </div>
-
-        <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
+        
+        <!-- <form action="#!" class="search order-lg-3 order-md-2 order-3 ml-auto">
           <input id="search-query" name="s" type="search" placeholder="Search..." autocomplete="off">
-        </form>
+        </form> -->
 
-        <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation">
+        <div class="collapse navbar-collapse text-center order-lg-2 order-4" id="navigation" style="margin-left: 750px;">
           <ul class="navbar-nav mx-auto mt-3 mt-lg-0">
             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Category
               </a>
               <div class="dropdown-menu">
-                @foreach($articles[0] as $categories)
-                <a class="dropdown-item" href="{{ route('showCategory', $categories['id']) }}">{{$categories['category']}}</a>
+                @foreach($categories as $category)
+                <a class="dropdown-item" href="{{ route('showCategory', $category['id']) }}">{{$category['category']}}</a>
                 @endforeach
               </div>
             </li>
@@ -50,8 +50,8 @@
                 Tag
               </a>
               <div class="dropdown-menu">
-                @foreach($articles[1] as $tags)
-                <a class="dropdown-item" href="{{ route('showTag', $tags['id']) }}">{{$tags['tag']}}</a>
+                @foreach($tags as $tag)
+                <a class="dropdown-item" href="{{ route('showTag', $tag['id']) }}">{{$tag['tag']}}</a>
                 @endforeach
               </div>
             </li>

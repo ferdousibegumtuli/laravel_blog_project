@@ -1,126 +1,100 @@
-<html lang="en" class=" js flexbox flexboxlegacy canvas canvastext 
-    webgl no-touch geolocation postmessage no-websqldatabase indexeddb 
-    hashchange history draganddrop websockets rgba hsla multiplebgs 
-    backgroundsize borderimage borderradius boxshadow textshadow opacity 
-    cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d 
-    csstransitions fontface generatedcontent video audio localstorage sessionstorage 
-    webworkers no-applicationcache svg inlinesvg smil svgclippaths">
+<html lang="en">
 
 <head>
-    <title>Blog Project</title>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="CodedThemes">
-    <meta name="keywords" content=" Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
-    <meta name="author" content="CodedThemes">
-    <link rel="icon" href="css/deshboard/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/deshboard/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/deshboard/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="css/deshboard/icofont.css">
-    <link rel="stylesheet" type="text/css" href="css/deshboard/style.css">
-    <link rel="stylesheet" type="text/css" href="css/deshboard/jquery.mCustomScrollbar.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&amp;display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Login</title>
 </head>
 
-
-<body class="fix-menu">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8" style="padding-top: 250px;">
-                <div class="card">
-                    <div class="card-header" style="font-size: x-large;">{{ __('Login') }}</div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
-                            @csrf
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 order-md-2">
+                    <img src="images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
+                </div>
+                <div class="col-md-6 contents">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <h3> <strong> Sign In </strong> </h3>
+                                <br><br>
                             </div>
 
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+                                <div class="row mb-3">
+                                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email_Address') }}</label>
+                                    <div class="col-md-12">
+                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
+                                        name="email" value="{{ old('email') }}" placeholder="Enter email address" autocomplete="email" autofocus>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
+                                <div class="row mb-3">
+                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                                    <div class="col-md-12">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
+                                        placeholder="Password" name="password" required autocomplete="current-password">
 
-                                    @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                    @endif
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+
+                                <div class="row mb-0">
+                                    <div class="col-md-12 text-md-left">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" 
+                                            id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Remember Me') }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div><br>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-12 text-left">
+                                        <button type="submit" class="btn btn-primary" style="width: 100%;"> 
+                                            {{ __('Login') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="js/deshboard/jquery.min.js"></script>
-    <script type="text/javascript" src="js/deshboard/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="js/deshboard/popper.min.js"></script>
-    <script type="text/javascript" src="js/deshboard/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/deshboard/jquery.slimscroll.js"></script>
-    <script type="text/javascript" src="js/deshboard/modernizr.js"></script>
-    <script src="js/deshboard/amcharts.min.js"></script>
-    <script src="js/deshboard/serial.min.js"></script>
-    <script type="text/javascript " src="js/deshboard/todo.js "></script>
-    <script type="text/javascript" src="js/deshboard/custom-dashboard.js"></script>
-    <script type="text/javascript" src="js/deshboard/script.js"></script>
-    <script type="text/javascript " src="js/deshboard/SmoothScroll.js"></script>
-    <script src="js/deshboard/pcoded.min.js"></script>
-    <script src="js/deshboard/demo-12.js"></script>
-    <script src="js/deshboard/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script>
-        var $window = $(window);
-        var nav = $('.fixed-button');
-        $window.scroll(function() {
-            if ($window.scrollTop() >= 200) {
-                nav.addClass('active');
-            } else {
-                nav.removeClass('active');
-            }
-        });
-    </script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
 </body>
 
 </html>

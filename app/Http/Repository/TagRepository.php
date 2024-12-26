@@ -32,4 +32,10 @@ class TagRepository
     {
         return Tag::where(Tag::ID, $id)->delete();
     }
+
+    public function findTagByTagId(int $id): Tag
+    {
+        return Tag::find($id);
+    }
+
 }

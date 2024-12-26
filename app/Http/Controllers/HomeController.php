@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repository\DeshboardRepository;
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\Tag;
+use App\Http\Repository\ArticleRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -18,26 +15,25 @@ class HomeController extends Controller
      * @return void
      */
 
-    public $deshboardRepository = null;
+    public $articleRepository = null;
 
     public function __construct()
     {
         $this->middleware('auth');
-        $this->deshboardRepository = new DeshboardRepository;
+        $this->articleRepository = new ArticleRepository;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+   
+    public function index(): view
     {
 
-        $article =$this->deshboardRepository->index();
+        $article =$this->articleRepository->getMonthlyData();
+        $labels = $article[2];
+        $data = $article[3];
+
         if(!empty($article)){
 
-            return view('admin.deshboard')->with(['article'=>$article] );
+            return view('admin.deshboard')->with(['article'=>$article, 'labels'=>$labels, 'data'=>$data] );
         }
 
         return view('admin.deshboard');

@@ -4,9 +4,9 @@
     <div class="col-12">
         <div class="breadcrumbs mb-4"> <a href="/">Home</a>
             <span class="mx-1">/</span> Articles
-            <span class="mx-1">/</span> <a href="">{{$articles[5]['tag']}}</a>
+            <span class="mx-1">/</span> <a href="">{{$getTagByTagId['tag']}}</a>
         </div>
-        <h1 class="mb-4 border-bottom border-primary d-inline-block">{{$articles[5]['tag']}}</h1>
+        <h1 class="mb-4 border-bottom border-primary d-inline-block">{{$getTagByTagId['tag']}}</h1>
     </div>
     <div class="col-lg-8 mb-5 mb-lg-0">
         <div class="row">
@@ -29,7 +29,7 @@
                     <div class="card-body px-0 pb-0">
                         <ul class="post-meta mb-2">
                             <li>
-                                 <a href="/{{$article['category']['id']}}/category">{{$article['category']['category']}}</a>
+                                <a href="/{{$article['category']['id']}}/category">{{$article['category']['category']}}</a>
                             </li>
                         </ul>
                         <h2><a class="post-title" href="/{{$article['id']}}/article">{{($article['title']) }}</a></h2>
@@ -40,12 +40,27 @@
                 </article>
             </div>
             @endforeach
+
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="mt-4">
+                            <nav class="mb-md-50">
+                                <ul class="pagination justify-content-center">
+                                    {{ $articles[2]->links('vendor.pagination.bootstrap-4') }}
+                                </ul>
+                            </nav>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class="col-lg-4">
         <div class="widget-blocks">
             <div class="row">
-            <div class="col-lg-12">
+                <div class="col-lg-12">
                     <div class="widget">
                         <div class="widget-body">
                             <img loading="lazy" decoding="async" src="/images/frontend/tag.jpg" alt="About Me" class="w-100 author-thumb-sm d-block">
@@ -65,17 +80,17 @@
                             <div class="widget-list">
                                 <article class="card mb-4">
                                     <div class="card-image">
-                                        <img loading="lazy" decoding="async" src="{{asset($articles[4]['image'])}}" alt="Post Thumbnail" class="w-100"
-                                        style="height: 300px;">
+                                        <img loading="lazy" decoding="async" src="{{asset($articles[1]['image'])}}" alt="Post Thumbnail" class="w-100"
+                                            style="height: 300px;">
                                     </div>
                                     <div class="card-body px-0 pb-1">
-                                        <h3><a class="post-title post-title-sm" href="/{{$articles[4]['id']}}/article">{{$articles[4]['title']}}</a></h3>
-                                        <p class="card-text">{{substr($articles[4]['description'],0 ,150)."..."}}</p>
-                                        <div class="content"> <a class="read-more-btn" href="/{{$articles[4]['id']}}/article">Read Full Article</a>
+                                        <h3><a class="post-title post-title-sm" href="/{{$articles[1]['id']}}/article">{{$articles[1]['title']}}</a></h3>
+                                        <p class="card-text">{{substr($articles[1]['description'],0 ,150)."..."}}</p>
+                                        <div class="content"> <a class="read-more-btn" href="/{{$articles[1]['id']}}/article">Read Full Article</a>
                                         </div>
                                     </div>
                                 </article>
-                                @foreach($articles[3] as $article)
+                                @foreach($articles[0] as $article)
                                 <a class="media align-items-center" href="/{{$article['id']}}/article">
                                     <img loading="lazy" decoding="async" src="{{asset($article['image'])}}" alt="Post Thumbnail" class="w-100">
                                     <div class="media-body ml-3">
@@ -93,10 +108,10 @@
                         <h2 class="section-title mb-3">Tags</h2>
                         <div class="widget-body">
                             <ul class="widget-list">
-                            @foreach($articles[1] as $tag)
-                                <li><a href="/{{$tag['id']}}/article">{{$tag['tag']}}</a>
+                                @foreach($tags as $tag)
+                                <li><a href="/{{$tag['id']}}/tag">{{$tag['tag']}}</a>
                                 </li>
-                            @endforeach
+                                @endforeach
                             </ul>
                         </div>
                     </div>

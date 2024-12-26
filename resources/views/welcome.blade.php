@@ -9,25 +9,25 @@
     <div class="row">
       <div class="col-12 mb-4">
         <article class="card article-card">
-          <a href="/{{$articles[4]['id']}}/article">
+          <a href="/{{$articles[1]['id']}}/article">
             <div class="card-image">
-              <div class="post-info"> <span class="text-uppercase">{{$articles[4]['created_at']}}</span>
+              <div class="post-info"> <span class="text-uppercase">{{$articles[1]['created_at']}}</span>
                 <span class="text-uppercase">3 minutes read</span>
               </div>
-              <img loading="lazy" decoding="async" src="{{$articles[4]['image']}}" alt="Post Thumbnail" class="w-100" style="height: 500px;">
+              <img loading="lazy" decoding="async" src="{{$articles[1]['image']}}" alt="Post Thumbnail" class="w-100" style="height: 500px;">
             </div>
           </a>
           <div class="card-body px-0 pb-1">
             <ul class="post-meta mb-2">
-              <li> 
-              <a href="/{{$articles[4]['category']['id']}}/category">{{$articles[4]['category']['category']}}</a>
-              <a href="/{{$articles[4]['tag']['id']}}/tag">{{$articles[4]['tag']['tag']}}</a>
+              <li>
+                <a href="/{{$articles[1]['category']['id']}}/category">{{$articles[1]['category']['category']}}</a>
+                <a href="/{{$articles[1]['tag']['id']}}/tag">{{$articles[1]['tag']['tag']}}</a>
               </li>
             </ul>
-            <h2 class="h1"><a class="post-title" href="/{{$articles[4]['id']}}/article">
-                {{$articles[4]['title']}}</a></h2>
-            <p class="card-text">{{substr($articles[4]['description'],0 ,250)."..."}}</p>
-            <div class="content"> <a class="read-more-btn" href="/{{$articles[4]['id']}}/article ">Read Full Article</a>
+            <h2 class="h1"><a class="post-title" href="/{{$articles[1]['id']}}/article">
+                {{$articles[1]['title']}}</a></h2>
+            <p class="card-text">{{substr($articles[1]['description'],0 ,250)."..."}}</p>
+            <div class="content"> <a class="read-more-btn" href="/{{$articles[1]['id']}}/article ">Read Full Article</a>
             </div>
           </div>
         </article>
@@ -50,7 +50,7 @@
           </a>
           <div class="card-body px-0 pb-0">
             <ul class="post-meta mb-2">
-              <li> 
+              <li>
                 <a href="/{{$article['category']['id']}}/article">{{$article['category']['category']}}</a>
                 <a href="/{{$article['tag']['id']}}/article">{{$article['tag']['tag']}}</a>
               </li>
@@ -65,42 +65,20 @@
       </div>
       @endforeach
 
-
       <div class="col-12">
         <div class="row">
           <div class="col-12">
             <nav class="mt-4">
-              <!-- pagination -->
               <nav class="mb-md-50">
                 <ul class="pagination justify-content-center">
-                  <li class="page-item">
-                    <a class="page-link" href="#!" aria-label="Pagination Arrow">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"></path>
-                      </svg>
-                    </a>
-                  </li>
-                  <li class="page-item active "> <a href="index.html" class="page-link">
-                      1
-                    </a>
-                  </li>
-                  <li class="page-item"> <a href="#!" class="page-link">
-                      2
-                    </a>
-                  </li>
-                  <li class="page-item">
-                    <a class="page-link" href="#!" aria-label="Pagination Arrow">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"></path>
-                      </svg>
-                    </a>
-                  </li>
+                {{ $articles[3]->links('vendor.pagination.bootstrap-4') }}
                 </ul>
               </nav>
             </nav>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 
@@ -110,8 +88,8 @@
         <div class="col-lg-12">
           <div class="widget">
             <div class="widget-body">
-              <img loading="lazy" decoding="async" src="images/frontend/article.jpeg" alt="About Me" style= "width: 350; height: 230"; 
-              class="author-thumb-sm d-block">
+              <img loading="lazy" decoding="async" src="images/frontend/article.jpeg" alt="About Me" style="width: 350; height: 230" ;
+                class="author-thumb-sm d-block">
               <h2 class="widget-title my-3"> Stories To Spark Your Mind</h2>
               <p class="mb-3 pb-2">
               <h4 style="display: inline;"> Welcome! </h4> This blog is where you'll find fresh ideas, tips, and stories to inspire you.
@@ -129,19 +107,19 @@
 
                 <article class="card mb-4">
                   <div class="card-image">
-                    <img loading="lazy" decoding="async" src="{{$articles[5]['image']}}" alt="Post Thumbnail" class="w-100">
+                    <img loading="lazy" decoding="async" src="{{$articles[2]['image']}}" alt="Post Thumbnail" class="w-100">
                   </div>
                   <div class="card-body px-0 pb-1">
-                    <h3><a class="post-title post-title-sm" href="/{{$articles[5]['id']}}/article">
-                        {{$articles[5]['title']}}
+                    <h3><a class="post-title post-title-sm" href="/{{$articles[2]['id']}}/article">
+                        {{$articles[2]['title']}}
                       </a></h3>
-                    <p class="card-text">{{substr($articles[5]['description'],0 ,150)."..."}}</p>
-                    <div class="content"> <a class="read-more-btn" href="/{{$articles[5]['id']}}/article">Read Full Article</a>
+                    <p class="card-text">{{substr($articles[2]['description'],0 ,150)."..."}}</p>
+                    <div class="content"> <a class="read-more-btn" href="/{{$articles[2]['id']}}/article">Read Full Article</a>
                     </div>
                   </div>
                 </article>
 
-                @foreach($articles[2] as $article)
+                @foreach($articles[0] as $article)
                 <a class="media align-items-center" href="/{{$article['id']}}/article">
                   <img loading="lazy" decoding="async" src="{{$article['image']}}" alt="Post Thumbnail" class="w-100">
                   <div class="media-body ml-3">
@@ -160,10 +138,10 @@
             <h2 class="section-title mb-3">Categories</h2>
             <div class="widget-body">
               <ul class="widget-list">
-              @foreach($articles[0] as $categories)
-                <li><a href="/{{$categories['id']}}/category">{{$categories['category']}}</a>
+                @foreach($categories as $category)
+                <li><a href="/{{$category['id']}}/category">{{$category['category']}}</a>
                 </li>
-              @endforeach
+                @endforeach
               </ul>
             </div>
           </div>
@@ -173,11 +151,11 @@
             <h2 class="section-title mb-3">Tags</h2>
             <div class="widget-body">
               <ul class="widget-list">
-              @foreach($articles[1] as $tags)
+                @foreach($tags as $tag)
                 <li>
-                  <a href="/{{$tags['id']}}/tag">{{$tags['tag']}}</a>
+                  <a href="/{{$tag['id']}}/tag">{{$tag['tag']}}</a>
                 </li>
-              @endforeach
+                @endforeach
               </ul>
             </div>
           </div>

@@ -29,11 +29,10 @@
                         <td>{{$article->user->name}}</td>
                         <td>{{$article->category->category}}</td>
                         <td>{{$article->tag->tag}}</td>
-                        @if($article->status == 1){
+                        @if($article->status == 1)
                         <td> Published </td>
-                        }@else{
+                        @else
                         <td> Draft </td>
-                        }
                         @endif
                         <td>
                             <a href="{{ route('articles.edit', $article->id) }}" type="button"

@@ -27,15 +27,15 @@ class HomeController extends Controller
     public function index(): view
     {
 
-        $article =$this->articleRepository->getMonthlyData();
-        $labels = $article[2];
-        $data = $article[3];
-
-        if(!empty($article)){
-
-            return view('admin.deshboard')->with(['article'=>$article, 'labels'=>$labels, 'data'=>$data] );
+        $article = $this->articleRepository->getMonthlyData();
+        $lastFiveArticles = $article['lastFiveArticles'];
+        $months = [];
+        $counts = [];
+        foreach ($article['articleCountByMonth'] as $articleCountByMonth) {
+            $months[] = $articleCountByMonth->month;
+            $counts[] = $articleCountByMonth->total_article;
         }
+        return view('admin.deshboard')->with(['article'=>$article, 'months'=>$months, 'counts'=>$counts, 'lastFiveArticles'=>$lastFiveArticles] );
 
-        return view('admin.deshboard');
     }
 }

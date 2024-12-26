@@ -13,7 +13,6 @@ class ArticleRepository
     {
 
         return Article::with('category', 'tag', 'user')->get();
-       
     }
 
 
@@ -22,11 +21,10 @@ class ArticleRepository
         $articleInfo = $request->all();
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('/articles_images');
-            $articleInfo['image'] = $image; 
+            $articleInfo['image'] = $image;
         }
 
-            return Article::create($articleInfo);
-        
+        return Article::create($articleInfo);
     }
 
     public function edit(int $id): object
@@ -37,7 +35,7 @@ class ArticleRepository
     public function update(ArticleRequest $request, int $id): bool
     {
         $updateData = $request->all();
-    
+
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('public/articles_images');
             $updateData['image'] = $image;
@@ -54,38 +52,38 @@ class ArticleRepository
 
     public function getArticle(): array
     {
-        
+
         $lastFourArticles = Article::with('category', 'tag', 'user')
-        ->latest() 
-        ->take(4)
-        ->get();
+            ->latest()
+            ->take(4)
+            ->get();
         $firstArticle = Article::with('category', 'tag', 'user')
-        ->oldest() 
-        ->first(); 
+            ->oldest()
+            ->first();
         $lastArticle = Article::with('category', 'tag', 'user')
-        ->latest() 
-        ->first(); 
+            ->latest()
+            ->first();
         $pagination = Article::with('category', 'tag', 'user')
-        ->paginate(6);
-            
+            ->paginate(6);
+
         return [$lastFourArticles, $firstArticle, $lastArticle, $pagination];
     }
 
     public function articleGetByCategoryId($id): array
     {
-        
+
         $lastFourArticlesByCategoryId = Article::with('category', 'tag', 'user')
-        ->where('category_id', $id)
-        ->latest() 
-        ->take(4)
-        ->get();
+            ->where('category_id', $id)
+            ->latest()
+            ->take(4)
+            ->get();
         $lastArticleByCategoryId = Article::with('category', 'tag', 'user')
-        ->where('category_id', $id)
-        ->latest() 
-        ->first();
+            ->where('category_id', $id)
+            ->latest()
+            ->first();
         $pagination = Article::with('category', 'tag', 'user')
-        ->where('category_id', $id)
-        ->paginate(6); 
+            ->where('category_id', $id)
+            ->paginate(6);
 
         return [$lastFourArticlesByCategoryId, $lastArticleByCategoryId, $pagination];
     }
@@ -93,17 +91,17 @@ class ArticleRepository
     public function articleGetByTagId($id): array
     {
         $lastFourArticlesByTagId = Article::with('category', 'tag', 'user')
-        ->where('tag_id', $id)
-        ->latest() 
-        ->take(4)
-        ->get();
+            ->where('tag_id', $id)
+            ->latest()
+            ->take(4)
+            ->get();
         $lastArticleByTagId = Article::with('category', 'tag', 'user')
-        ->where('tag_id', $id)
-        ->latest() 
-        ->first();
+            ->where('tag_id', $id)
+            ->latest()
+            ->first();
         $pagination = Article::with('category', 'tag', 'user')
-        ->where('tag_id', $id)
-        ->paginate(6); 
+            ->where('tag_id', $id)
+            ->paginate(6);
 
         return [$lastFourArticlesByTagId, $lastArticleByTagId, $pagination];
     }
@@ -112,19 +110,18 @@ class ArticleRepository
     {
         $articleGetById = Article::with('category', 'tag', 'user')->where('id', $id)->get();
         $getLastFourArticle = Article::with('category', 'tag', 'user')
-        ->latest() 
-        ->take(4)
-        ->get();
+            ->latest()
+            ->take(4)
+            ->get();
         $getLastArticle = Article::with('category', 'tag', 'user')
-        ->latest() 
-        ->first(); 
+            ->latest()
+            ->first();
         return [$articleGetById, $getLastFourArticle, $getLastArticle];
-        
     }
 
     public function getMonthlyData(): array
     {
-        $results = DB::select("
+        $totalCount = DB::select("
             SELECT 
                 (SELECT COUNT(*) FROM articles WHERE status = '1') AS publishedArticle,
                 (SELECT COUNT(*) FROM articles WHERE status = '0') AS draftArticle,
@@ -133,16 +130,15 @@ class ArticleRepository
                 (SELECT COUNT(*) FROM articles) AS totalArticles
         ");
 
-        $articles = Article::orderBy('id', 'desc')->limit(5)->get();
+        $lastFiveArticles = Article::orderBy('id', 'desc')->limit(5)->get();
 
         config()->set('database.connections.mysql.strict', false);
         DB::reconnect();
         $articleCountsByMonth = DB::select(DB::raw("SELECT MONTHNAME(created_at) as 'month', 
-        COUNT(*) AS 'total_article' FROM `articles` WHERE YEAR(created_at) = YEAR(now()) GROUP BY MONTH(created_at)"));
-        $month = $articleCountsByMonth[0]->month;
-        $data = $articleCountsByMonth[0]->total_article;
+                                            COUNT(*) AS 'total_article' FROM `articles` 
+                                            WHERE YEAR(created_at) = YEAR(now()) 
+                                            GROUP BY MONTH(created_at)"));
 
-        return [$results, $articles, $month, $data];
+        return ['totalCount' =>$totalCount, 'lastFiveArticles' => $lastFiveArticles, 'articleCountByMonth' => $articleCountsByMonth];
     }
-
 }

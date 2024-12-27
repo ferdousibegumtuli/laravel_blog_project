@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repository\DeshboardRepository;
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\Tag;
+use App\Http\Repository\ArticleRepository;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -18,29 +15,27 @@ class HomeController extends Controller
      * @return void
      */
 
-    public $deshboardRepository = null;
+    public $articleRepository = null;
 
     public function __construct()
     {
         $this->middleware('auth');
-        $this->deshboardRepository = new DeshboardRepository;
+        $this->articleRepository = new ArticleRepository;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index()
+   
+    public function index(): view
     {
 
-
-        $article =$this->deshboardRepository->index();
-        $monthName = $article[2][0]->month;
-        $totalArticle = $article[2][0]->total_article;
-        return view('admin.deshboard')->with(['article'=>$article, 'monthName'=>$monthName, 'totalArticle'=>$totalArticle] );
-        // dd($article);
-
+        $article = $this->articleRepository->getMonthlyData();
+        $lastFiveArticles = $article['lastFiveArticles'];
+        $months = [];
+        $counts = [];
+        foreach ($article['articleCountByMonth'] as $articleCountByMonth) {
+            $months[] = $articleCountByMonth->month;
+            $counts[] = $articleCountByMonth->total_article;
+        }
+        return view('admin.deshboard')->with(['article'=>$article, 'months'=>$months, 'counts'=>$counts, 'lastFiveArticles'=>$lastFiveArticles] );
 
     }
 }

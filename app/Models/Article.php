@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Facade\FlareClient\View;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -45,4 +46,7 @@ class Article extends Model
     {
         return ($this->belongsTo(User::class));
     }
+
+
+  
 }

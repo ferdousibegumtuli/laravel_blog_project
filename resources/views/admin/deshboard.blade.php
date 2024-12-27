@@ -10,7 +10,7 @@
                     <div class="card-block-small">
                         <span class="bg-c-blue card1-icon"><i class="icon-foursquare"></i></span>
                         <span class="text-c-blue f-w-600">Total Cetegory</span>
-                        <h4>{{$article[0][0]->totalCategory}}</h4>
+                        <h4>{{$article['totalCount'][0]->totalCategory}}</h4>
                         <div>
                             <span class="f-left m-t-10 text-muted">
                                 <i class="text-c-blue f-16 icofont icofont-warning m-r-10"></i>Just Update
@@ -24,7 +24,7 @@
                     <div class="card-block-small">
                         <span class="bg-c-pink card1-icon"><i class="icon-tags"></i></span>
                         <span class="text-c-pink f-w-600">Total Tag</span>
-                        <h4>{{$article[0][0]->totalTag}}</h4>
+                        <h4>{{$article['totalCount'][0]->totalTag}}</h4>
                         <div>
                             <span class="f-left m-t-10 text-muted">
                                 <i class="text-c-pink f-16 icofont icofont-calendar m-r-10"></i>Last 24 hours
@@ -38,7 +38,7 @@
                     <div class="card-block-small">
                         <span class="bg-c-green card1-icon"><i class="icon-book"></i></span>
                         <span class="text-c-green f-w-600">Published Article</span>
-                        <h4>{{$article[0][0]->publishedArticle}}</h4>
+                        <h4>{{$article['totalCount'][0]->publishedArticle}}</h4>
                         <div>
                             <span class="f-left m-t-10 text-muted">
                                 <i class="text-c-green f-16 icofont icofont-tag m-r-10"></i>Tracked via microsoft
@@ -52,7 +52,7 @@
                     <div class="card-block-small">
                         <span class="bg-c-yellow card1-icon"><i class="icon-pencil"></i></span>
                         <span class="text-c-yellow f-w-600">Draft Article</span>
-                        <h4>{{$article[0][0]->draftArticle}}</h4>
+                        <h4>{{$article['totalCount'][0]->draftArticle}}</h4>
                         <div>
                             <span class="f-left m-t-10 text-muted">
                                 <i class="text-c-yellow f-16 icofont icofont-refresh m-r-10"></i>Just update
@@ -87,11 +87,11 @@
                     <div class="card-block text-center">
                         <div class="row">
                             <div class="col-6 b-r-default">
-                                <h2>{{$article[0][0]->publishedArticle}}</h2>
+                                <h2>{{$article['totalCount'][0]->publishedArticle}}</h2>
                                 <p class="text-muted">Published</p>
                             </div>
                             <div class="col-6">
-                                <h2>{{$article[0][0]->draftArticle}}</h2>
+                                <h2>{{$article['totalCount'][0]->draftArticle}}</h2>
                                 <p class="text-muted">Draft</p>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                     <div class="card-block text-center">
                         <div class="row">
                             <div class="col-6 ">
-                                <h2>{{$article[0][0]->totalCategory}}</h2>
+                                <h2>{{$article['totalCount'][0]->totalCategory}}</h2>
                                 <p class="text-muted">Active</p>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                     <div class="card-block text-center">
                         <div class="row">
                             <div class="col-6 ">
-                                <h2>{{$article[0][0]->totalTag}}</h2>
+                                <h2>{{$article['totalCount'][0]->totalTag}}</h2>
                                 <p class="text-muted">Active</p>
                             </div>
                         </div>
@@ -149,18 +149,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($article[1] as $key => $article)
+                        @foreach($lastFiveArticles as $key => $article)
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>{{$article->title}}</td>
                             <td>{{$article->user->name}}</td>
                             <td>{{$article->category->category}}</td>
                             <td>{{$article->tag->tag}}</td>
-                            @if($article->status == 1){
-                            <td> Published </td>
-                            }@else{
-                            <td> Draft </td>
-                            }
+                            @if($article->status == 1)
+                                <td> Published </td>
+                            @else
+                                <td> Draft </td>
                             @endif
                         </tr>
                         @endforeach
@@ -174,13 +173,12 @@
 </div>
 
 <script type="text/javascript">
-    var labels = {{ Js::from($monthName) }};
-    var users = {{ Js::from($totalArticle) }};
-    
+var labels =  {{ Js::from($months) }};
+var users =  {{ Js::from($counts) }};
     const data = {
         labels: labels,
         datasets: [{
-            label: 'My First dataset',
+            label: 'Publish article',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: users,

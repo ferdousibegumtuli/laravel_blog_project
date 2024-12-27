@@ -8,7 +8,7 @@
   </div>
   <div class="col-lg-8 mx-auto mb-5 mb-lg-0">
 
-    @if(!empty($article['image']))
+    @if(!empty($articles[0][0]['image']))
     <img loading="lazy" decoding="async" src="{{asset($articles[0][0]['image'])}}" class="img-fluid w-100 mb-4" alt="Author Image">
     @else
     <img loading="lazy" decoding="async" src="{{ asset('articles_images/defaultPic.jpg') }}" class="img-fluid w-100 mb-4" alt="Author Image">

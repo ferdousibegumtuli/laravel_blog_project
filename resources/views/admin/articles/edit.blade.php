@@ -4,23 +4,17 @@
     <div class="card-block">
         <h4 class="sub-title">Update Article</h4>
 
-        <!-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif -->
-
         <form action="{{route('articles.update', $articles['id'])}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Title</label>
                 <div class="col-sm-10">
-                    <input type="text" value="{{$articles['title']}}" class="form-control" name="title">
+                    <input type="text" value="{{$articles['title']}}" 
+                    class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" name="title">
+                    @if($errors->has('title'))
+                    <div class="error text-danger">{{ $errors->first('title') }}</div>
+                    @endif
                 </div>
             </div>
             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
@@ -61,7 +55,10 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Image</label>
                 <div class="col-sm-10">
-                    <input name="image" id="file" type="file" class="form-control">
+                    <input name="image" id="file" type="file" class="form-control @error('image') is-invalid @enderror">
+                    @if($errors->has('image'))
+                    <div class="error text-danger">{{ $errors->first('image') }}</div>
+                    @endif
                 </div>
             </div>
             <div class="form-group row">
@@ -74,7 +71,7 @@
                             Published
                         </option>
                         <option value="0"
-                            {{ $articles['tag_id'] == 0  ? 'selected' : '' }}>
+                            {{ $articles['status'] == 0  ? 'selected' : '' }}>
                             Draft
                         </option>
                     </select>
